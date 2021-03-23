@@ -19,6 +19,14 @@ pipeline {
         sh "docker rmi ehab123/helloworld:${env.BUILD_NUMBER}"
       }
     }
+    stage('Apply Kubernetes Files') {
+      steps {
+          withKubeConfig([credentialsId: 'kubeconfig']) {
+          sh 'cat kubernetes/deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -'
+          sh 'kubectl apply -f service.yaml'
+        }
+      }
+  }
 }
 post {
     success {
