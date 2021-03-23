@@ -1,5 +1,4 @@
 # kubernetes_demo
-Foobar is a Python library for dealing with word pluralization.
 
 ## Installation
 Terraform dir has IAC for building EKS cluster with 2 worker nodes on AWS
